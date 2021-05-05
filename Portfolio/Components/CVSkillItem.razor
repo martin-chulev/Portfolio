@@ -1,0 +1,28 @@
+﻿<div class="row">
+    <div class="col">
+        <h4>@Title</h4>
+        <h5><em>@Subtitle</em></h5>
+        <ul>
+            @if (Details != null)
+            {
+                @foreach (var detail in Details)
+                {
+                    <li>
+                        - @detail
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<string> Details { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Subtitle { get; set; }
+}

@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-3" style="min-width: 7em; max-width: 20em">
+        <p style="padding-top: 10px"><span>@StartDate.ToString("MMM yyyy")</span> - <span>@(EndDate?.ToString("MMM yyyy") ?? "Present")</span></p>
+        <p>@Location</p>
+    </div>
+    <div class="col" style="border-left: 2px solid rgba(205, 135, 0, 0.5);">
+        <h4>@Title</h4>
+        <h5><em>@Subtitle</em></h5>
+        <ul>
+            @if (Items != null)
+            {
+                @foreach (var item in Items)
+                {
+                    <li>
+                        - @item
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<string> Items { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Subtitle { get; set; }
+
+    [Parameter]
+    public DateTime StartDate { get; set; }
+
+    [Parameter]
+    public DateTime? EndDate { get; set; }
+
+    [Parameter]
+    public string Location { get; set; }
+}

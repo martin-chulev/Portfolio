@@ -1,0 +1,337 @@
+﻿@page "/"
+@page "/cv"
+@inject IJSRuntime JSRuntime
+@inject IPersonalInfoService PersonalInfoService
+
+<div class="row">
+    <div class="col-10">
+        <div class="row">
+            <div class="col-12 col-xl-4" style="min-width: 22em;">
+                <h3>Martin Chulev</h3>
+            </div>
+            <div class="col-12 col-xl-8">
+                <div class="row personal-info">
+                    @if (PersonalInfo.Address != null || PersonalInfo.Nationality != null)
+                    {
+                        <div class="col-6">
+                            @if (PersonalInfo.Address != null)
+                            {
+                                <div class="row my-4">
+                                    <div class="col-2 personal-info-label">
+                                        ADDRESS
+                                    </div>
+                                    <div class="col">
+                                        @PersonalInfo.Address
+                                    </div>
+                                </div>
+                            }
+                            @if (PersonalInfo.Nationality != null)
+                            {
+                                <div class="row my-4">
+                                    <div class="col-2 personal-info-label">
+                                        NATIONALITY
+                                    </div>
+                                    <div class="col">
+                                        @PersonalInfo.Nationality
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @if (PersonalInfo.Email != null || PersonalInfo.PhoneNumber != null)
+                    {
+                        <div class="col-6">
+                            @if (PersonalInfo.Email != null)
+                            {
+                                <div class="row my-4">
+                                    <div class="col-2 personal-info-label">
+                                        EMAIL
+                                    </div>
+                                    <div class="col">
+                                        @PersonalInfo.Email
+                                    </div>
+                                </div>
+                            }
+                            @if (PersonalInfo.PhoneNumber != null)
+                            {
+                                <div class="row my-4">
+                                    <div class="col-2 personal-info-label">
+                                        PHONE
+                                    </div>
+                                    <div class="col">
+                                        @PersonalInfo.PhoneNumber
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2 photo">
+        <img src="images/photo.png" alt="" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <a href="@Constants.URLs.LinkedIn" target="_blank">
+            <div @onmouseover="() => LinkedInButtonHovered = true"
+                 @onmouseout="() => LinkedInButtonHovered = false"
+                 class="btn btn-outline-dark">
+                <span style="color: @(LinkedInButtonHovered ? "#ffffff" : Constants.Colors.LinkedIn)">
+                    <i class="fab fa-linkedin"></i>
+                </span>
+                <span>LinkedIn</span>
+            </div>
+        </a>
+        <a href="@Constants.URLs.GitHub" target="_blank">
+            <div @onmouseover="() => GitHubButtonHovered = true"
+                 @onmouseout="() => GitHubButtonHovered = false"
+                 class="btn btn-outline-dark">
+                <span style="color: @(GitHubButtonHovered ? "#ffffff" : Constants.Colors.GitHub)">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>GitHub</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+    <fieldset class="col-12 p-4">
+        <legend style="padding: 0 4px; width: auto">Employment History</legend>
+        <CVHistoryItem Items="ItemsCleversoft"
+                       Title="Lead Software Engineer"
+                       Subtitle="cleversoft Bulgaria OOD"
+                       StartDate="new DateTime(2016, 10, 1)"
+                       EndDate="new DateTime(2019, 5, 1)"
+                       Location="Sofia" />
+        <br />
+        <br />
+        <CVHistoryItem Items="ItemsBlackSeaGames"
+                       Title="Gameplay Developer"
+                       Subtitle="Black Sea Games"
+                       StartDate="new DateTime(2019, 5, 1)"
+                       EndDate="new DateTime(2019, 12, 1)"
+                       Location="Sofia" />
+        <br />
+        <br />
+        <CVHistoryItem Items="ItemsFreelance"
+                       Title="Freelance"
+                       Subtitle=""
+                       StartDate="new DateTime(2019, 12, 1)"
+                       EndDate="new DateTime(2020, 9, 1)"
+                       Location="Sofia" />
+        <br />
+        <br />
+        <CVHistoryItem Items="ItemsAlcorSoft"
+                       Title="Lead .NET Developer"
+                       Subtitle="AlcorSoft"
+                       StartDate="new DateTime(2020, 9, 1)"
+                       EndDate="null"
+                       Location="Sofia" />
+    </fieldset>
+</div>
+<div class="row">
+    <fieldset class="col-12 p-4">
+        <legend style="padding: 0 4px; width: auto">Education</legend>
+        <CVHistoryItem Items="ItemsMG"
+                       Title="Baba Tonka High School of Mathematics"
+                       Subtitle="High School Diploma"
+                       StartDate="new DateTime(2008, 9, 1)"
+                       EndDate="new DateTime(2016, 5, 1)"
+                       Location="Ruse" />
+        <br />
+        <br />
+        <CVHistoryItem Items="ItemsSoftUni"
+                       Title="Software University (SoftUni)"
+                       StartDate="new DateTime(2015, 1, 1)"
+                       EndDate="new DateTime(2015, 9, 1)"
+                       Location="Sofia / Online" />
+    </fieldset>
+</div>
+<div class="row">
+    <fieldset class="col-12 col-lg mr-4 p-4">
+        <legend style="padding: 0 4px; width: auto">Programming Languages</legend>
+        <ul>
+            <li>
+                <CVSkillItem Title="C# / .NET" Subtitle=".NET Framework 4.8 - .NET 6" Details="CSDetails" />
+            </li>
+            <li>
+                <CVSkillItem Title="JavaScript" Details="JSDetails" />
+            </li>
+            <li>
+                <CVSkillItem Title="Other" Details="OtherLanguagesDetails" />
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset class="col-12 col-lg p-4">
+        <legend style="padding: 0 4px; width: auto">Tools and Technologies</legend>
+        <ul>
+            <li>
+                <CVSkillItem Title="Visual Studio" />
+            </li>
+            <li>
+                <CVSkillItem Title="Version Control" Details="VersionControlDetails" />
+            </li>
+            <li>
+                <CVSkillItem Title="Database" Details="DatabaseDetails" />
+            </li>
+            <li>
+                <CVSkillItem Title="Other" Details="OtherToolsDetails" />
+            </li>
+        </ul>
+    </fieldset>
+</div>
+<div class="row">
+    <fieldset class="col-12 col-lg mr-4 p-4">
+        <legend style="padding: 0 4px; width: auto">Soft Skills</legend>
+        <ul>
+            <li>Attention to detail</li>
+            <li>Keeping calm under pressure</li>
+            <li>Willingness to learn new things and understand how everything works in-depth</li>
+            <li>Good communication in professional and casual environments</li>
+            <li>Passion for mentoring and knowledge-sharing</li>
+        </ul>
+    </fieldset>
+    <fieldset class="col-12 col-lg p-4">
+        <legend style="padding: 0 4px; width: auto">Languages</legend>
+        <ul>
+            <li><i class="flag-icon flag-icon-bg" /> Bulgarian - Mother tongue</li>
+            <li><i class="flag-icon flag-icon-us" /> / <i class="flag-icon flag-icon-gb" /> English - Excellent reading, listening, writing and speaking</li>
+            <li><i class="flag-icon flag-icon-de" /> German - Very good reading and listening, decent writing and speaking</li>
+        </ul>
+    </fieldset>
+</div>
+<div class="row">
+    <fieldset class="col-12 p-4">
+        <legend style="padding: 0 4px; width: auto">Hobbies</legend>
+        <ul>
+            <li>Playing guitar and piano</li>
+            <li>Chess and board games</li>
+            <li>Origami</li>
+            <li>Working out</li>
+        </ul>
+    </fieldset>
+</div>
+
+@code {
+    public bool LinkedInButtonHovered { get; set; }
+    public bool GitHubButtonHovered { get; set; }
+
+    public PersonalInfo PersonalInfo { get; set; }
+
+    public List<string> ItemsCleversoft { get; set; }
+    public List<string> ItemsBlackSeaGames { get; set; }
+    public List<string> ItemsFreelance { get; set; }
+    public List<string> ItemsAlcorSoft { get; set; }
+
+    public List<string> ItemsMG { get; set; }
+    public List<string> ItemsSoftUni { get; set; }
+
+    public List<string> CSDetails { get; set; }
+    public List<string> JSDetails { get; set; }
+    public List<string> OtherLanguagesDetails { get; set; }
+
+    public List<string> VersionControlDetails { get; set; }
+    public List<string> DatabaseDetails { get; set; }
+    public List<string> OtherToolsDetails { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        PersonalInfo = PersonalInfoService.GetPersonalInfo();
+        InitializeHistory();
+        InitializeSkills();
+    }
+
+    private void InitializeHistory()
+    {
+        ItemsCleversoft = new List<string>
+{
+            "Responsible for planning and development of extensions and customizations for Dynamics 365 systems (CRM + ERP) - plugins (C#), workflows (C#) and front-end modifications (JavaScript), maintaining projects for several clients",
+            "Coordinating time and requirement estimation with the project managers and the German part of the team",
+            "Leading and mentoring a team of 4 (2 full-time developers and 2 interns)",
+            "Technical owner of 3 products"
+        };
+
+        ItemsBlackSeaGames = new List<string>
+{
+            "Development of gameplay features in Unity with C# and an in-house configuration language",
+            "Debugging and optimizing overall performance, such as render times and memory usage"
+        };
+
+        ItemsFreelance = new List<string>
+{
+            "Exploring programming languages and technologies (Python, Go, WordPress, etc.)",
+            "Working on personal projects with ASP.NET Core"
+        };
+
+        ItemsAlcorSoft = new List<string>
+{
+            "Leading a company-wide transition to C#/.NET, responsible for the best practices throughout the process - proper version control, high quality code and documentation, unit testing and release policies",
+            "Actively developing a set of tools and libraries which improve internal processes, such as code maintenance, development speed and client-side troubleshooting",
+            "Developed and maintaining over 5 projects (WPF and ASP.NET Core) with heavy focus on databases (SQL Server, MySQL and OracleDB)",
+            "Currently migrating an ERP system to Blazor and developing custom abstract components",
+        };
+
+        ItemsMG = new List<string>
+{
+            "Class specialized in Mathematics",
+            "Intensive English in the 8th grade",
+            "Additional classes in Informatics and programming courses"
+        };
+
+        ItemsSoftUni = new List<string>
+{
+            "Advanced C#",
+            "Java Fundamentals",
+            "Data Structures (C#)",
+            "ASP.NET Core"
+        };
+    }
+
+    private void InitializeSkills()
+    {
+        CSDetails = new List<string>
+{
+            "ASP.NET Core (MVC, WebAPI), Blazor",
+            "WinForms, WPF",
+            "EF6, EF Core",
+            "xUnit"
+        };
+
+        JSDetails = new List<string>
+{
+            "Vanilla JS, jQuery, AJAX, NodeJS"
+        };
+
+        OtherLanguagesDetails = new List<string>
+{
+            "HTML, CSS, SQL",
+            "C++, Java"
+        };
+
+        VersionControlDetails = new List<string>
+{
+            "Git - GitHub, GitExtensions",
+            "SVN - TortoiseSVN"
+        };
+
+        DatabaseDetails = new List<string>
+{
+            "SQL Server, MySQL, OracleDB, SQLite"
+        };
+
+        OtherToolsDetails = new List<string>
+{
+            "NuGet, VPS, nginx, Unity"
+        };
+    }
+}

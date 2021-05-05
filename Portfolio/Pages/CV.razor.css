@@ -1,0 +1,64 @@
+﻿li {
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
+h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+h5 {
+    margin-bottom: 10px;
+}
+
+span {
+    white-space: nowrap;
+    font-size: 1.1rem;
+}
+
+ul {
+    font-size: 1.2rem;
+    list-style: disc;
+}
+
+fieldset {
+    border: 2px solid;
+    /*border-color: rgba(0, 0, 255, 0.2);*/
+    border-color: rgba(205, 135, 0, 0.5);
+    margin-bottom: 20px;
+    padding-left: 50px !important;
+}
+
+    fieldset > legend {
+        /*color: royalblue;*/
+        color: rgba(205, 135, 0, 1);
+    }
+
+.flag-icon {
+    outline: 1px solid black;
+    outline-offset: -1px;
+}
+
+.personal-info {
+    font-size: 1.2rem;
+}
+
+.personal-info-label {
+    min-width: 8em;
+    font-size: 1rem;
+    /*color: royalblue;*/
+    color: rgba(205, 135, 0, 1);
+}
+
+.photo > img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
