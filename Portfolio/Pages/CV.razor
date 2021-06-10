@@ -11,10 +11,11 @@
             </div>
             <div class="col-12 col-xl-8">
                 <div class="row personal-info">
-                    @if (PersonalInfo.Address != null || PersonalInfo.Nationality != null)
+                    @if (string.IsNullOrEmpty(PersonalInfo.Address) == false ||
+                         string.IsNullOrEmpty(PersonalInfo.Nationality) == false)
                     {
                         <div class="col-6">
-                            @if (PersonalInfo.Address != null)
+                            @if (string.IsNullOrEmpty(PersonalInfo.Address) == false)
                             {
                                 <div class="row my-4">
                                     <div class="col-2 personal-info-label">
@@ -25,7 +26,7 @@
                                     </div>
                                 </div>
                             }
-                            @if (PersonalInfo.Nationality != null)
+                            @if (string.IsNullOrEmpty(PersonalInfo.Nationality) == false)
                             {
                                 <div class="row my-4">
                                     <div class="col-2 personal-info-label">
@@ -38,10 +39,11 @@
                             }
                         </div>
                     }
-                    @if (PersonalInfo.Email != null || PersonalInfo.PhoneNumber != null)
+                    @if (string.IsNullOrEmpty(PersonalInfo.Email) == false ||
+                         string.IsNullOrEmpty(PersonalInfo.PhoneNumber) == false)
                     {
                         <div class="col-6">
-                            @if (PersonalInfo.Email != null)
+                            @if (string.IsNullOrEmpty(PersonalInfo.Email) == false)
                             {
                                 <div class="row my-4">
                                     <div class="col-2 personal-info-label">
@@ -52,7 +54,7 @@
                                     </div>
                                 </div>
                             }
-                            @if (PersonalInfo.PhoneNumber != null)
+                            @if (string.IsNullOrEmpty(PersonalInfo.PhoneNumber) == false)
                             {
                                 <div class="row my-4">
                                     <div class="col-2 personal-info-label">
@@ -105,21 +107,12 @@
 <div class="row">
     <fieldset class="col-12 p-4">
         <legend style="padding: 0 4px; width: auto">Employment History</legend>
-        <CVHistoryItem Items="ItemsCleversoft"
-                       Title="Lead Software Engineer"
-                       Subtitle="cleversoft Bulgaria OOD"
-                       StartDate="new DateTime(2016, 10, 1)"
-                       EndDate="new DateTime(2019, 5, 1)"
+        <CVHistoryItem Items="ItemsAlcorSoft"
+                       Title="Lead .NET Developer"
+                       Subtitle="AlcorSoft"
+                       StartDate="new DateTime(2020, 9, 1)"
+                       EndDate="null"
                        Location="Sofia" />
-        <br />
-        <br />
-        <CVHistoryItem Items="ItemsBlackSeaGames"
-                       Title="Gameplay Developer"
-                       Subtitle="Black Sea Games"
-                       StartDate="new DateTime(2019, 5, 1)"
-                       EndDate="new DateTime(2019, 12, 1)"
-                       Location="Sofia" />
-        <br />
         <br />
         <CVHistoryItem Items="ItemsFreelance"
                        Title="Freelance"
@@ -128,12 +121,32 @@
                        EndDate="new DateTime(2020, 9, 1)"
                        Location="Sofia" />
         <br />
+        <CVHistoryItem Items="ItemsBlackSeaGames"
+                       Title="Gameplay Developer"
+                       Subtitle="Black Sea Games"
+                       StartDate="new DateTime(2019, 5, 1)"
+                       EndDate="new DateTime(2019, 12, 1)"
+                       Location="Sofia" />
         <br />
-        <CVHistoryItem Items="ItemsAlcorSoft"
-                       Title="Lead .NET Developer"
-                       Subtitle="AlcorSoft"
-                       StartDate="new DateTime(2020, 9, 1)"
-                       EndDate="null"
+        <CVHistoryItem Items="ItemsCleversoftLead"
+                       Title="Lead Software Engineer"
+                       Subtitle="cleversoft Bulgaria OOD"
+                       StartDate="new DateTime(2018, 9, 1)"
+                       EndDate="new DateTime(2019, 5, 1)"
+                       Location="Sofia" />
+        <br />
+        <CVHistoryItem Items="ItemsCleversoftAppSpecialist"
+                       Title="Application Specialist"
+                       Subtitle="cleversoft Bulgaria OOD"
+                       StartDate="new DateTime(2017, 1, 1)"
+                       EndDate="new DateTime(2018, 9, 1)"
+                       Location="Sofia" />
+        <br />
+        <CVHistoryItem Items="ItemsCleversoftIntern"
+                       Title="Intern"
+                       Subtitle="cleversoft Bulgaria OOD"
+                       StartDate="new DateTime(2016, 10, 1)"
+                       EndDate="new DateTime(2016, 12, 1)"
                        Location="Sofia" />
     </fieldset>
 </div>
@@ -146,7 +159,6 @@
                        StartDate="new DateTime(2008, 9, 1)"
                        EndDate="new DateTime(2016, 5, 1)"
                        Location="Ruse" />
-        <br />
         <br />
         <CVHistoryItem Items="ItemsSoftUni"
                        Title="Software University (SoftUni)"
@@ -226,7 +238,9 @@
 
     public PersonalInfo PersonalInfo { get; set; }
 
-    public List<string> ItemsCleversoft { get; set; }
+    public List<string> ItemsCleversoftIntern { get; set; }
+    public List<string> ItemsCleversoftAppSpecialist { get; set; }
+    public List<string> ItemsCleversoftLead { get; set; }
     public List<string> ItemsBlackSeaGames { get; set; }
     public List<string> ItemsFreelance { get; set; }
     public List<string> ItemsAlcorSoft { get; set; }
@@ -253,28 +267,40 @@
 
     private void InitializeHistory()
     {
-        ItemsCleversoft = new List<string>
-{
+        ItemsCleversoftLead = new List<string>
+        {
             "Responsible for planning and development of extensions and customizations for Dynamics 365 systems (CRM + ERP) - plugins (C#), workflows (C#) and front-end modifications (JavaScript), maintaining projects for several clients",
             "Coordinating time and requirement estimation with the project managers and the German part of the team",
             "Leading and mentoring a team of 4 (2 full-time developers and 2 interns)",
             "Technical owner of 3 products"
         };
 
+        ItemsCleversoftAppSpecialist = new List<string>
+        {
+            "Responsible for planning and development of extensions and customizations for Dynamics 365 systems (CRM + ERP) - plugins (C#), workflows (C#) and front-end modifications (JavaScript), maintaining projects for several clients",
+            "Coordinating time and requirement estimation with the project managers and the German part of the team",
+            "Helping interns get familiar with the systems and existing functionality"
+        };
+
+        ItemsCleversoftIntern = new List<string>
+        {
+            "Assisting with development of extensions and customizations for Dynamics 365 systems (CRM + ERP) - plugins (C#), workflows (C#) and front-end modifications (JavaScript)",
+        };
+
         ItemsBlackSeaGames = new List<string>
-{
+        {
             "Development of gameplay features in Unity with C# and an in-house configuration language",
             "Debugging and optimizing overall performance, such as render times and memory usage"
         };
 
         ItemsFreelance = new List<string>
-{
+        {
             "Exploring programming languages and technologies (Python, Go, WordPress, etc.)",
             "Working on personal projects with ASP.NET Core"
         };
 
         ItemsAlcorSoft = new List<string>
-{
+        {
             "Leading a company-wide transition to C#/.NET, responsible for the best practices throughout the process - proper version control, high quality code and documentation, unit testing and release policies",
             "Actively developing a set of tools and libraries which improve internal processes, such as code maintenance, development speed and client-side troubleshooting",
             "Developed and maintaining over 5 projects (WPF and ASP.NET Core) with heavy focus on databases (SQL Server, MySQL and OracleDB)",
@@ -282,14 +308,14 @@
         };
 
         ItemsMG = new List<string>
-{
+        {
             "Class specialized in Mathematics",
             "Intensive English in the 8th grade",
             "Additional classes in Informatics and programming courses"
         };
 
         ItemsSoftUni = new List<string>
-{
+        {
             "Advanced C#",
             "Java Fundamentals",
             "Data Structures (C#)",
@@ -300,7 +326,7 @@
     private void InitializeSkills()
     {
         CSDetails = new List<string>
-{
+        {
             "ASP.NET Core (MVC, WebAPI), Blazor",
             "WinForms, WPF",
             "EF6, EF Core",
@@ -308,30 +334,30 @@
         };
 
         JSDetails = new List<string>
-{
+        {
             "Vanilla JS, jQuery, AJAX, NodeJS"
         };
 
         OtherLanguagesDetails = new List<string>
-{
+        {
             "HTML, CSS, SQL",
             "C++, Java"
         };
 
         VersionControlDetails = new List<string>
-{
+        {
             "Git - GitHub, GitExtensions",
             "SVN - TortoiseSVN"
         };
 
         DatabaseDetails = new List<string>
-{
+        {
             "SQL Server, MySQL, OracleDB, SQLite"
         };
 
         OtherToolsDetails = new List<string>
-{
+        {
             "NuGet, VPS, nginx, Unity"
         };
-    }
+    } 
 }
